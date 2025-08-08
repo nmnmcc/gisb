@@ -20,6 +20,7 @@
         "rehype-raw": "^7.0.0",
         "remark-gfm": "^4.0.1",
         "tailwindcss": "^4.1.8",
+        "react-helmet-async": "^2.0.5",
         "wouter": "^3.7.1",
         "zod": "^3.25.57"
     },
