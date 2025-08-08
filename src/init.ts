@@ -21,14 +21,15 @@ export const config: Config = parse_config(
     icon: "/icon",
 };
 
-document.title = config.title;
-
-document.getElementById("icon")!.setAttribute("href", config.icon);
+const iconElement = document.getElementById("icon");
+if (iconElement) {
+    iconElement.setAttribute("href", config.icon);
+}
 
 // export const commits = await client.rest.gists.listCommits({ gist_id });
 
-export const files = Object.values(res?.data.files!)
+export const files = Object.values(res?.data.files ?? {})
     // blog articles with larger date values ​​(indicating newer) should be ranked higher,
     // and sorted in descending order.
-    .sort((a, b) => -a?.filename?.localeCompare(b?.filename!)!)
+    .sort((a, b) => -(a?.filename?.localeCompare(b?.filename ?? "") ?? 0))
     .filter((file) => file !== null);

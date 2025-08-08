@@ -1,23 +1,24 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import { Router, Route } from "wouter";
 import { Home } from "./page/Home";
 import { Main } from "./layout/Main";
-import { Article } from "./component/Article";
+import { ArticleContainer } from "./component/Article";
 
 import "./init";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <Main>
-            <Router>
-                <Route path="/article/:id">
-                    {({ id }) => (
-                        <Article.Container id={id}></Article.Container>
-                    )}
-                </Route>
-                <Route path="/" component={Home}></Route>
-            </Router>
-        </Main>
+        <HelmetProvider>
+            <Main>
+                <Router>
+                    <Route path="/article/:id">
+                        {({ id }) => <ArticleContainer id={id}></ArticleContainer>}
+                    </Route>
+                    <Route path="/" component={Home}></Route>
+                </Router>
+            </Main>
+        </HelmetProvider>
     </StrictMode>,
 );
