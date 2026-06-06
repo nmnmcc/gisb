@@ -15,7 +15,9 @@ export const classify = (name: string): Type => {
     return "other";
 };
 
-export const parse_config = (raw: string) => {
+export const parse_config = (raw?: string) => {
+    if (raw === undefined) return null;
+
     try {
         return Config.parse(parse(raw));
     } catch (err) {
